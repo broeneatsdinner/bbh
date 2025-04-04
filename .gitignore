@@ -1,0 +1,42 @@
+# Byte-compiled / cache files
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+
+# Virtual environments
+.venv/
+env/
+venv/
+
+# VSCode or other IDE settings
+.vscode/
+.idea/
+
+# OS-generated files
+.DS_Store
+Thumbs.db
+
+# Log, temp, or dump files
+*.log
+*.bak
+*.tmp
+
+# Environment or auth config
+.env
+*.env
+
+# Local config files
+hosts.csv
+
+# Ignored data directory
+ignored/
+
+# Build artifacts
+*.egg-info/
+dist/
+build/
+
+# Cache
+.cache/

@@ -1,0 +1,3 @@
+name,host,user,key,port,description
+example,123.123.123.123,ubuntu,/home/user/.ssh/id_rsa,22,Example host
+devbox,10.0.0.1,admin,/home/user/.ssh/id_rsa,2222,Local test machine
