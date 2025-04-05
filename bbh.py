@@ -1,8 +1,8 @@
-# bbh.py
-import sys
 from utils import load_hosts, annotate_hosts_with_status
 from tui import select_host
 from launcher import launch_ssh
+import sys
+
 
 def main():
 	use_simple = "--simple" in sys.argv
@@ -19,6 +19,7 @@ def main():
 		launch_ssh(selected)
 	else:
 		print("No host selected.")
+
 
 if __name__ == "__main__":
 	main()

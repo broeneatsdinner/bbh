@@ -1,6 +1,6 @@
 from prompt_toolkit import Application
 from prompt_toolkit.key_binding import KeyBindings
-from prompt_toolkit.layout import Layout, HSplit, VSplit, Window
+from prompt_toolkit.layout import Layout, HSplit, Window
 from prompt_toolkit.layout.controls import FormattedTextControl
 from prompt_toolkit.widgets import Box, Frame
 from theme import APP_STYLE
@@ -14,11 +14,9 @@ class HostSelector:
 		self.result = None
 		self.cancelled = False
 
-		# Header line with 2-character spacing for status icon alignment
-		header_line = f"  {'NAME':18} {'HOST':18} {'PORT':5}  {'USER':10} {'KEY'}"
-		header_text = FormattedTextControl(text=header_line, style="class:header")
+		header_line = f"{'NAME':18} {'HOST':18} {'PORT':5}  {'USER':10} {'KEY':10} {'STATUS'}"
+		header_text = FormattedTextControl(text=header_line, style="")
 
-		# Footer help bar
 		footer_line = " ↑/↓ or j/k = navigate   ⏎ = connect   q or Esc = cancel "
 		footer_text = FormattedTextControl(text=footer_line, style="class:footer")
 
@@ -38,6 +36,7 @@ class HostSelector:
 			]),
 			title="bbh --- Server Selector",
 			style="class:frame",
+			border_style="class:border",
 		)
 
 		self.layout = Layout(self.container)
@@ -58,9 +57,9 @@ class HostSelector:
 			host = h["host"]
 			port = str(h["port"])
 			user = h["user"]
-			key = h["key"].split("/")[-1][:10]  # Max width 10 chars
-			line = f"{status_icon}  {name:18} {host:18} {port:5}  {user:10} {key}"
-			lines.append(("class:reverse" if is_selected else "", line))
+			key = h["key"].split("/")[-1][:10]
+			line = f"{name:18} {host:18} {port:5}  {user:10} {key:10} {status_icon}\n"
+			lines.append(("class:reverse", line) if is_selected else ("", line))
 		return lines
 
 	def _create_keybindings(self):
@@ -104,7 +103,7 @@ def _simple_menu(hosts):
 	print("\nAvailable SSH Hosts:\n")
 	for i, h in enumerate(hosts):
 		status_icon = "🟢" if h.get("status") == "Running" else "⚫"
-		print(f"{i+1}) {status_icon} {h['name']:12} {h['user']}@{h['host']}:{h['port']}")
+		print(f"{i+1}) {h['name']:12} {h['user']}@{h['host']}:{h['port']} {status_icon}")
 	print("0) Cancel\n")
 
 	try:
