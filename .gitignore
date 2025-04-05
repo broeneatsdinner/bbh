@@ -9,6 +9,7 @@ __pycache__/
 .venv/
 env/
 venv/
+bbh_env/
 
 # VSCode or other IDE settings
 .vscode/
