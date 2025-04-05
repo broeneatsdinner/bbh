@@ -37,8 +37,7 @@ class HostSelector:
                 Window(content=footer_text, height=1, dont_extend_height=True),
             ]),
             title="bbh --- Server Selector",
-            style="class:frame",
-            border_style="class:border",
+            style="class:frame",  # ✅ Clean, valid class
         )
 
         self.layout = Layout(self.container)
